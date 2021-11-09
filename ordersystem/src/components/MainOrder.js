@@ -11,25 +11,35 @@ import {
   Space,
   Radio,
 } from "antd";
-import "antd/dist/antd.css";
-import "../order.css";
-import { DownloadOutlined } from "@ant-design/icons";
-import Beverage from "./Beverage";
-import PhoneOrder from "./PhoneOrder";
-import DeliveryOrder from "./DeliveryOrder";
-import Chicken from "./Chicken";
+// import "../order.css";
+// import { DownloadOutlined } from "@ant-design/icons";
+// import Beverage from "./Beverage";
+// import PhoneOrder from "./PhoneOrder";
+// import DeliveryOrder from "./DeliveryOrder";
+import DeatailMenuOfAllFood from "./DeatailMenuOfAllFood";
 import Receipt from "./Receipt";
 import MainOrderOfFood from "./MainOrderOfFood";
 
 export default function MainOrder() {
   const [currentPage, setCurrentPage] = React.useState("MainOrder");
-  // food name to [unit price, counts]
+  // foodName to [unit price, counts]
   const [receipt, setReceipt] = React.useState(new Map());
+  const [menu, setMenu] = React.useState(new Map());
 
-  function updateReceipt(foodName, price) {
-    let updatedReceipt = new Map();
-    if (receipt.has(foodName)) {
-      updatedReceipt.set(foodName, [price, receipt.get(foodName)[1] + 1]);
+  console.log("menu in MainOrder : ", menu);
+
+  // operation: 1 for adding, -1 for deleting
+  function updateReceipt(foodName, price, operation) {
+    let updatedReceipt = new Map(receipt);
+
+    if (updatedReceipt.has(foodName)) {
+      updatedReceipt.set(foodName, [
+        price,
+        updatedReceipt.get(foodName)[1] + operation,
+      ]);
+      if (updatedReceipt.get(foodName)[1] === 0) {
+        updatedReceipt.delete(foodName);
+      }
     } else {
       updatedReceipt.set(foodName, [price, 1]);
     }
@@ -37,30 +47,37 @@ export default function MainOrder() {
     setReceipt(updatedReceipt);
   }
 
+  function updateMenu(map) {
+    setMenu(map);
+  }
+
   function showPage() {
     if (currentPage === "MainOrder") {
       return (
-        <MainOrderOfFood setCurrentPage={setCurrentPage}></MainOrderOfFood>
+        <MainOrderOfFood
+          setCurrentPage={setCurrentPage}
+          updateMenu={updateMenu}
+        ></MainOrderOfFood>
       );
-    } else if (currentPage === "Chicken") {
+    } else if (currentPage === "DeatailMenuOfAllFood") {
       return (
-        <Chicken
+        <DeatailMenuOfAllFood
           setCurrentPage={setCurrentPage}
           updateReceipt={updateReceipt}
-        ></Chicken>
+          menu={menu}
+        ></DeatailMenuOfAllFood>
       );
     }
   }
 
   return (
-    <div>
-      <Row>
-        <Col span={6}>
-          <Receipt receipt={receipt}></Receipt>
-        </Col>
-        <Col span={1}></Col>
-        <Col span={17}>{showPage()}</Col>
-      </Row>
-    </div>
+    <Row>
+      <Col span={8}>
+        <Receipt receipt={receipt} updateReceipt={updateReceipt}></Receipt>
+        <Button className="middleb">Print</Button>
+      </Col>
+      <Col span={3}></Col>
+      <Col span={13}>{showPage()}</Col>
+    </Row>
   );
 }

@@ -1,31 +1,18 @@
 import React, { useState, useEffect } from "react";
-import {
-  Layout,
-  Card,
-  Row,
-  Col,
-  Form,
-  Input,
-  message,
-  Button,
-  Space,
-  Radio,
-  Checkbox,
-  Table,
-} from "antd";
-import "antd/dist/antd.css";
-import "../order.css";
-import { DownloadOutlined } from "@ant-design/icons";
-import Beverage from "./Beverage";
-import PhoneOrder from "./PhoneOrder";
-import DeliveryOrder from "./DeliveryOrder";
-import Chicken from "./Chicken";
+import { Table, Space, Button } from "antd";
+// import "../order.css";
 
 export default function Receipt(props) {
   const [dataSource, setDataSource] = useState("");
+  const [totalPrice, setTotalPrice] = React.useState(() => {});
 
   useEffect(() => {
     updateDataSource();
+    let currTotalPrice = 0;
+    props.receipt.forEach((value, key) => {
+      currTotalPrice += value[0] * value[1];
+    });
+    setTotalPrice(currTotalPrice);
   }, [props]);
 
   function updateDataSource() {
@@ -42,6 +29,8 @@ export default function Receipt(props) {
         price: value[0] * value[1],
       });
     });
+
+    console.log("receipt in Receipt: ", newDataSource);
 
     setDataSource(newDataSource);
   }
@@ -64,6 +53,21 @@ export default function Receipt(props) {
       dataIndex: "price",
       key: "price",
     },
+    {
+      title: "Action",
+      key: "action",
+      render: (text, record) => (
+        <Space size="middle">
+          <Button
+            onClick={() =>
+              props.updateReceipt(record.food, record.price / record.number, -1)
+            }
+          >
+            Delete
+          </Button>
+        </Space>
+      ),
+    },
   ];
 
   /*
@@ -80,5 +84,11 @@ export default function Receipt(props) {
       address: "10 Downing Street",
     },
   */
-  return <Table dataSource={dataSource} columns={columns} />;
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={columns}
+      footer={() => "total price: $".concat(totalPrice)}
+    />
+  );
 }

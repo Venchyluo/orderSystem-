@@ -1,0 +1,69 @@
+{
+    "Chicken" :[
+        {   
+            "foodName": "Kungpao Chicken, Large",
+            "price": 10
+        },
+        {
+            "foodName": "Mongolian Chicken, Large",
+            "price": 5
+        },
+        {
+            "foodName": "Orange Chicken, Large",
+            "price": 20
+        },
+        {
+            "foodName": "Sichuan Chicken, Large",
+            "price": 8
+        },
+        {
+            "foodName": "Big Plate Chicken, Large",
+            "price": 30
+        }
+    ],
+    "Beef" :[
+        {   
+            "foodName": "Kungpao Beef, Large",
+            "price": 10
+        },
+        {
+            "foodName": "Mongolian Beef, Large",
+            "price": 5
+        },
+        {
+            "foodName": "Orange Beef, Large",
+            "price": 20
+        },
+        {
+            "foodName": "Sichuan Beef, Large",
+            "price": 8
+        },
+        {
+            "foodName": "Big Plate Beef, Large",
+            "price": 20
+        }
+    ],
+    "Fish" :[
+        {   
+            "foodName": "Kungpao Fish, Large",
+            "price": 10
+        },
+        {
+            "foodName": "Mongolian Fish, Large",
+            "price": 5
+        },
+        {
+            "foodName": "Orange Fish, Large",
+            "price": 20
+        },
+        {
+            "foodName": "Sichuan Fish, Large",
+            "price": 8
+        },
+        {
+            "foodName": "Big Plate Fish, Large",
+            "price": 20
+        }
+    ]
+}
+

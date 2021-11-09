@@ -6,13 +6,7 @@ import { Card } from "antd";
 import PhoneOrder from "./PhoneOrder";
 import WalkinOrder from "./WalkinOrder";
 import DeliveryOrder from "./DeliveryOrder";
-import "../order.css";
-import Chicken from "./Chicken";
-import Beef from "./Beef";
-
-import "antd/dist/antd.css";
-import DeliverOrder from "./DeliveryOrder";
-import MainOrder from "./MainOrder";
+// import "../order.css";
 
 const { Header, Footer, Sider, Content } = Layout;
 const { Meta } = Card;
@@ -23,7 +17,7 @@ export default function Main() {
   function showPage() {
     if (currentPage === "Selection") {
       return (
-        <Row className="row1">
+        <Row>
           <Col span={8}>
             <Card
               className="cardmiddle"
@@ -56,8 +50,8 @@ export default function Main() {
             >
               <Meta title="Phone" />
             </Card>
-            ,
           </Col>
+
           <Col span={8}>
             <Card
               className="cardmiddle"
@@ -73,44 +67,31 @@ export default function Main() {
             >
               <Meta title="Delivery" />
             </Card>
-            ,
           </Col>
         </Row>
       );
     } else if (currentPage === "WalkInOrder") {
-      return (
-        <Row>
-          <WalkinOrder />
-        </Row>
-      );
+      return <WalkinOrder />;
     } else if (currentPage === "PhoneOrder") {
-      return (
-        <Row>
-          <PhoneOrder />
-        </Row>
-      );
+      return <PhoneOrder />;
     } else if (currentPage === "DeliverOrder") {
-      return (
-        <Row>
-          <DeliveryOrder></DeliveryOrder>
-        </Row>
-      );
-    } else if (currentPage == "Chicken") {
-      return (
-        <Row>
-          <Beef></Beef>
-        </Row>
-      );
+      return <DeliveryOrder />;
     }
   }
 
   return (
     <Layout>
-      <Header className="headerordersystem">Order system</Header>
+      <Header style={{ position: "fixed", zIndex: 1, width: "100%" }}>
+        Order system
+      </Header>
+      <Content
+        className="site-layout"
+        style={{ padding: "0 15px", marginTop: 64 }}
+      >
+        {showPage()}
+      </Content>
 
-      <Content>{showPage()}</Content>
-
-      <Footer>copyright </Footer>
+      <Footer style={{ textAlign: "center" }}>copyright </Footer>
     </Layout>
   );
 }
