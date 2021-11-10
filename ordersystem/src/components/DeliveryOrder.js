@@ -38,7 +38,7 @@ export default function DeliveryOrder() {
     console.log(values);
   };
   return (
-    <Row className="row1">
+    <Row>
       <Col span={8} offset={8}>
         <Form
           className="orderform"

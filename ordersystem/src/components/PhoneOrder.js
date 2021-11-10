@@ -14,7 +14,11 @@ import "antd/dist/antd.css";
 
 export default function PhoneOrder() {
   const [form] = Form.useForm();
+  // const [phoneNumber, setPhoneNumber] = React.useState;
 
+  // const getPhoneNumber = (number) => {
+  //   setPhoneNumber(number);
+  // };
   const onFinish = () => {
     message.success("Submit success!");
   };
@@ -29,7 +33,7 @@ export default function PhoneOrder() {
     });
   };
   return (
-    <Row className="row1">
+    <Row>
       <Col span={8} offset={8}>
         <Form
           className="orderform"
@@ -52,7 +56,7 @@ export default function PhoneOrder() {
                   required: true,
                 },
                 {
-                  type: "string",
+                  type: "number",
                   min: 6,
                 },
               ]}

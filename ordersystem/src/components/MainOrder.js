@@ -1,16 +1,5 @@
-import React, { useState, useEffect } from "react";
-import {
-  Layout,
-  Card,
-  Row,
-  Col,
-  Form,
-  Input,
-  message,
-  Button,
-  Space,
-  Radio,
-} from "antd";
+import React from "react";
+import { Tabs, Row, Col, Input, Button, Divider, Card } from "antd";
 // import "../order.css";
 // import { DownloadOutlined } from "@ant-design/icons";
 // import Beverage from "./Beverage";
@@ -19,12 +8,16 @@ import {
 import DeatailMenuOfAllFood from "./DeatailMenuOfAllFood";
 import Receipt from "./Receipt";
 import MainOrderOfFood from "./MainOrderOfFood";
+import Beef from "./Beef";
 
 export default function MainOrder() {
   const [currentPage, setCurrentPage] = React.useState("MainOrder");
   // foodName to [unit price, counts]
   const [receipt, setReceipt] = React.useState(new Map());
   const [menu, setMenu] = React.useState(new Map());
+  const { TextArea } = Input;
+  const { TabPane } = Tabs;
+  const { Meta } = Card;
 
   console.log("menu in MainOrder : ", menu);
 
@@ -69,10 +62,33 @@ export default function MainOrder() {
       );
     }
   }
+  function callback(key) {
+    console.log(key);
+  }
 
   return (
     <Row>
       <Col span={8}>
+        <Tabs type="card">
+          <TabPane tab="Phone Order" key="1">
+            <Input placeholder="Phone Number" />
+          </TabPane>
+          <TabPane tab="Delivery Order" key="2">
+            <Input placeholder="Phone Number" />
+            <TextArea rows={3} placeholder="Address" />
+          </TabPane>
+        </Tabs>
+        <Row>
+          <Col span={12}>
+            <Button type="primary">Submit</Button>
+          </Col>
+          <Col span={12}>
+            <Button type="danger">Reset</Button>
+          </Col>
+        </Row>
+
+        <Divider orientation="left"></Divider>
+
         <Receipt receipt={receipt} updateReceipt={updateReceipt}></Receipt>
         <Button className="middleb">Print</Button>
       </Col>
