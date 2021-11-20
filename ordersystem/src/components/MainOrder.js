@@ -1,5 +1,15 @@
-import React from "react";
-import { Tabs, Row, Col, Input, Button, Divider, Card } from "antd";
+import React, { useRef } from "react";
+import {
+  Tabs,
+  Row,
+  Col,
+  Input,
+  Button,
+  Divider,
+  Card,
+  Form,
+  InputNumber,
+} from "antd";
 // import "../order.css";
 // import { DownloadOutlined } from "@ant-design/icons";
 // import Beverage from "./Beverage";
@@ -8,7 +18,8 @@ import { Tabs, Row, Col, Input, Button, Divider, Card } from "antd";
 import DeatailMenuOfAllFood from "./DeatailMenuOfAllFood";
 import Receipt from "./Receipt";
 import MainOrderOfFood from "./MainOrderOfFood";
-import Beef from "./Beef";
+import { useReactToPrint } from "react-to-print";
+import TestForPrint from "../TestForPrint";
 
 export default function MainOrder() {
   const [currentPage, setCurrentPage] = React.useState("MainOrder");
@@ -18,9 +29,14 @@ export default function MainOrder() {
   const { TextArea } = Input;
   const { TabPane } = Tabs;
   const { Meta } = Card;
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+  const [phoneNumber, setPhoneNumber] = React.useState("");
+  const [address, setAddress] = React.useState("");
 
-  console.log("menu in MainOrder : ", menu);
-
+  // console.log("menu in MainOrder : ", menu);
   // operation: 1 for adding, -1 for deleting
   function updateReceipt(foodName, price, operation) {
     let updatedReceipt = new Map(receipt);
@@ -66,31 +82,49 @@ export default function MainOrder() {
     console.log(key);
   }
 
+  const [form] = Form.useForm();
+  const onSubmit = (values) => {
+    console.log(values);
+    if (values.phoneNumber) {
+      setPhoneNumber(values.phoneNumber);
+    }
+    if (values.address) {
+      setAddress(values.address);
+    }
+  };
+
+  const onReset = () => {
+    form.resetFields();
+  };
+
   return (
     <Row>
       <Col span={8}>
-        <Tabs type="card">
-          <TabPane tab="Phone Order" key="1">
-            <Input placeholder="Phone Number" />
-          </TabPane>
-          <TabPane tab="Delivery Order" key="2">
-            <Input placeholder="Phone Number" />
-            <TextArea rows={3} placeholder="Address" />
-          </TabPane>
-        </Tabs>
-        <Row>
-          <Col span={12}>
-            <Button type="primary">Submit</Button>
-          </Col>
-          <Col span={12}>
-            <Button type="danger">Reset</Button>
-          </Col>
-        </Row>
-
+        <Form form={form} name="control-hooks" onFinish={onSubmit}>
+          <Form.Item name="phoneNumber" label="phoneNumber">
+            <Input />
+          </Form.Item>
+          <Form.Item name="address" label="address">
+            <Input />
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+            <Button htmlType="button" onClick={onReset}>
+              Reset
+            </Button>
+          </Form.Item>
+        </Form>
         <Divider orientation="left"></Divider>
-
-        <Receipt receipt={receipt} updateReceipt={updateReceipt}></Receipt>
-        <Button className="middleb">Print</Button>
+        <Receipt
+          receipt={receipt}
+          updateReceipt={updateReceipt}
+          ref={componentRef}
+          phoneNumber={phoneNumber}
+          address={address}
+        ></Receipt>
+        <Button onClick={handlePrint}>Print this out!</Button>
       </Col>
       <Col span={3}></Col>
       <Col span={13}>{showPage()}</Col>

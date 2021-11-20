@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Table, Space, Button } from "antd";
+import { Table, Space, Button, List, Divider } from "antd";
+import ReactToPrint from "react-to-print";
 // import "../order.css";
 
-export default function Receipt(props) {
+export const Receipt = React.forwardRef((props, ref) => {
   const [dataSource, setDataSource] = useState("");
   const [totalPrice, setTotalPrice] = React.useState(() => {});
 
@@ -84,11 +85,24 @@ export default function Receipt(props) {
       address: "10 Downing Street",
     },
   */
+
+  // This is for phoner number and address
+  const customerData = [props.phoneNumber, props.address];
+
   return (
-    <Table
-      dataSource={dataSource}
-      columns={columns}
-      footer={() => "total price: $".concat(totalPrice)}
-    />
+    <div ref={ref}>
+      <List
+        size="small"
+        dataSource={customerData}
+        renderItem={(item) => <List.Item>{item}</List.Item>}
+      />
+      <Table
+        dataSource={dataSource}
+        columns={columns}
+        footer={() => "total price: $".concat(totalPrice)}
+      />
+    </div>
   );
-}
+});
+
+export default Receipt;
