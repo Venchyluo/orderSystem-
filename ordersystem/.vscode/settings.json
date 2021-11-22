@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/c756a4c6-f443-440e-a138-e07c24a22984/resourceGroups/OrangeChickenFoodOrdering/providers/Microsoft.Web/sites/OrangeChickenChicago",
+    "appService.deploySubpath": "."
+}
