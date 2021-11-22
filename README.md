@@ -5,9 +5,9 @@ POST
 Return: success/error
 
 
-getAllPhoneNumbers()
+getAllContacts()
 GET
-Return: [phoneNumber]
+Return: [{phoneNumber: 1, address:"example address"}]
 
 getAddressByPhoneNumber(phoneNumber)
 GET
