@@ -26,9 +26,6 @@ export default function MainOrder() {
   // foodName to [unit price, counts]
   const [receipt, setReceipt] = React.useState(new Map());
   const [menu, setMenu] = React.useState(new Map());
-  const { TextArea } = Input;
-  const { TabPane } = Tabs;
-  const { Meta } = Card;
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -124,6 +121,7 @@ export default function MainOrder() {
           phoneNumber={phoneNumber}
           address={address}
         ></Receipt>
+        {/* show price after tax */}
         <Button onClick={handlePrint}>Print this out!</Button>
       </Col>
       <Col span={3}></Col>

@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import { Layout } from "antd";
 import { Row, Col } from "antd";
 import { Card } from "antd";
-import PhoneOrder from "./PhoneOrder";
+// import PhoneOrder from "./PhoneOrder";
 import WalkinOrder from "./WalkinOrder";
-import DeliveryOrder from "./DeliveryOrder";
+// import DeliveryOrder from "./DeliveryOrder";
 // import "../order.css";
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -22,7 +22,7 @@ export default function Main() {
             <Card
               className="cardmiddle"
               hoverable
-              style={{ width: 320 }}
+              style={{ width: 400 }}
               cover={
                 <img
                   alt="Walk in"
@@ -35,7 +35,7 @@ export default function Main() {
             </Card>
           </Col>
 
-          <Col span={8}>
+          {/* <Col span={8}>
             <Card
               className="cardmiddle"
               hoverable
@@ -50,9 +50,9 @@ export default function Main() {
             >
               <Meta title="Phone" />
             </Card>
-          </Col>
+          </Col> */}
 
-          <Col span={8}>
+          {/* <Col span={8}>
             <Card
               className="cardmiddle"
               hoverable
@@ -67,26 +67,26 @@ export default function Main() {
             >
               <Meta title="Delivery" />
             </Card>
-          </Col>
+          </Col> */}
         </Row>
       );
     } else if (currentPage === "WalkInOrder") {
       return <WalkinOrder />;
-    } else if (currentPage === "PhoneOrder") {
-      return <PhoneOrder />;
-    } else if (currentPage === "DeliverOrder") {
-      return <DeliveryOrder />;
+      // } else if (currentPage === "PhoneOrder") {
+      //   return <PhoneOrder />;
+      // } else if (currentPage === "DeliverOrder") {
+      //   return <DeliveryOrder />;
     }
   }
 
   return (
     <Layout>
-      <Header style={{ position: "fixed", zIndex: 1, width: "100%" }}>
+      {/* <Header style={{ position: "fixed", zIndex: 1, width: "100%" }}>
         Order system
-      </Header>
+      </Header> */}
       <Content
         className="site-layout"
-        style={{ padding: "0 15px", marginTop: 64 }}
+        style={{ padding: "0 15px", marginTop: 30 }}
       >
         {showPage()}
       </Content>

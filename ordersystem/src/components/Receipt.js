@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, Space, Button, List, Divider } from "antd";
+import { Row, Table, Space, Button, List, Divider } from "antd";
 import ReactToPrint from "react-to-print";
 // import "../order.css";
 
@@ -89,6 +89,17 @@ export const Receipt = React.forwardRef((props, ref) => {
   // This is for phoner number and address
   const customerData = [props.phoneNumber, props.address];
 
+  // get total price before tax and after tax
+  const priceAfterTax = totalPrice * 1.12;
+  const footerContent = () => (
+    <div>
+      <Row justify="end">Price Before Tax: $ {totalPrice}</Row>
+      <Row justify="end">Tax(12%): $ {(totalPrice * 0.12).toFixed(3)}</Row>
+      <Row justify="end">
+        <b>Price After Tax: $ {priceAfterTax.toFixed(3)}</b>
+      </Row>
+    </div>
+  );
   return (
     <div ref={ref}>
       <List
@@ -99,7 +110,11 @@ export const Receipt = React.forwardRef((props, ref) => {
       <Table
         dataSource={dataSource}
         columns={columns}
-        footer={() => "total price: $".concat(totalPrice)}
+        // footer={() => "total price: $".concat(totalPrice)}
+        footer={footerContent}
+        pagination={false}
+        // if want more page, set pagination to ture and give it amount.
+        scroll={{ x: 350, y: 600 }}
       />
     </div>
   );
