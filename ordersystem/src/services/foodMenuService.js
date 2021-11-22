@@ -1,7 +1,7 @@
 import { getRequest, postRequest, mockResult } from "./Http";
 import { isMock } from "../constants";
 
-export function getChickenMenu(content) {
+export function getDetailMenu(content) {
   if (isMock) {
     return mockResult(require("../mock/catelogueMenu"));
   }

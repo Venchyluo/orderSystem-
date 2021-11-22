@@ -1,69 +1,86 @@
 {
-    "Chicken" :[
-        {   
-            "foodName": "Kungpao Chicken, Large",
-            "price": 10
-        },
-        {
-            "foodName": "Mongolian Chicken, Large",
-            "price": 5
-        },
-        {
-            "foodName": "Orange Chicken, Large",
-            "price": 20
-        },
-        {
-            "foodName": "Sichuan Chicken, Large",
-            "price": 8
-        },
-        {
-            "foodName": "Big Plate Chicken, Large",
-            "price": 30
-        }
-    ],
-    "Beef" :[
-        {   
-            "foodName": "Kungpao Beef, Large",
-            "price": 10
-        },
-        {
-            "foodName": "Mongolian Beef, Large",
-            "price": 5
-        },
-        {
-            "foodName": "Orange Beef, Large",
-            "price": 20
-        },
-        {
-            "foodName": "Sichuan Beef, Large",
-            "price": 8
-        },
-        {
-            "foodName": "Big Plate Beef, Large",
-            "price": 20
-        }
-    ],
-    "Fish" :[
-        {   
-            "foodName": "Kungpao Fish, Large",
-            "price": 10
-        },
-        {
-            "foodName": "Mongolian Fish, Large",
-            "price": 5
-        },
-        {
-            "foodName": "Orange Fish, Large",
-            "price": 20
-        },
-        {
-            "foodName": "Sichuan Fish, Large",
-            "price": 8
-        },
-        {
-            "foodName": "Big Plate Fish, Large",
-            "price": 20
-        }
+  "Chicken": {
+    "color": "#ff8243",
+    "subMenu": [
+      {
+        "foodName": "Kungpao Chicken, Large",
+        "price": 10
+      },
+      {
+        "foodName": "Mongolian Chicken, Large",
+        "price": 5
+      },
+      {
+        "foodName": "Orange Chicken, Large",
+        "price": 20
+      },
+      {
+        "foodName": "Sichuan Chicken, Large",
+        "price": 8
+      },
+      {
+        "foodName": "Big Plate Chicken, Large",
+        "price": 30
+      }
     ]
+  },
+  "Beef": {
+    "color": "#c36a2d",
+    "subMenu": [
+      {
+        "foodName": "Kungpao Beef, Large",
+        "price": 10
+      },
+      {
+        "foodName": "Mongolian Beef, Large",
+        "price": 5
+      },
+      {
+        "foodName": "Orange Beef, Large",
+        "price": 20
+      },
+      {
+        "foodName": "Sichuan Beef, Large",
+        "price": 8
+      },
+      {
+        "foodName": "Big Plate Beef, Large",
+        "price": 20
+      }
+    ]
+  },
+  "Fish": {
+    "color": "#d1e8e4",
+    "subMenu": [
+      {
+        "foodName": "Kungpao Fish, Large",
+        "price": 10
+      },
+      {
+        "foodName": "Mongolian Fish, Large",
+        "price": 5
+      },
+      {
+        "foodName": "Orange Fish, Large",
+        "price": 20
+      },
+      {
+        "foodName": "Sichuan Fish, Large",
+        "price": 8
+      },
+      {
+        "foodName": "Big Plate Fish, Large",
+        "price": 20
+      }
+    ]
+  },
+  "Trashes": {
+    "color": "#ff8243",
+    "subMenu": [
+      {
+        "foodName": "Trash Diandian",
+        "price": 0.1
+      }
+    ]
+  }
 }
-

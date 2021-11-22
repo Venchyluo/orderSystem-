@@ -15,7 +15,7 @@ import {
 // import Beverage from "./Beverage";
 // import PhoneOrder from "./PhoneOrder";
 // import DeliveryOrder from "./DeliveryOrder";
-import DeatailMenuOfAllFood from "./DeatailMenuOfAllFood";
+import DetailMenuOfAllFood from "./DetailMenuOfAllFood";
 import Receipt from "./Receipt";
 import MainOrderOfFood from "./MainOrderOfFood";
 import { useReactToPrint } from "react-to-print";
@@ -65,13 +65,13 @@ export default function MainOrder() {
           updateMenu={updateMenu}
         ></MainOrderOfFood>
       );
-    } else if (currentPage === "DeatailMenuOfAllFood") {
+    } else if (currentPage === "DetailMenuOfAllFood") {
       return (
-        <DeatailMenuOfAllFood
+        <DetailMenuOfAllFood
           setCurrentPage={setCurrentPage}
           updateReceipt={updateReceipt}
           menu={menu}
-        ></DeatailMenuOfAllFood>
+        ></DetailMenuOfAllFood>
       );
     }
   }

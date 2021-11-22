@@ -3,11 +3,11 @@ import { Row, Col, Button } from "antd";
 // import "../order.css";
 import { DownloadOutlined } from "@ant-design/icons";
 
-export default function DeatailMenuOfAllFood(props) {
+export default function DetailMenuOfAllFood(props) {
   // props: {menu},{setCurrentPage}, {updateReceipt}
   // foodName : price
 
-  console.log("props in DeatailMenuOfAllFood: ", props);
+  console.log("props in DetailMenuOfAllFood: ", props);
 
   let menu = [];
   // props.menu is what imported from upper layer
@@ -15,7 +15,7 @@ export default function DeatailMenuOfAllFood(props) {
     menu.push({ foodName: foodName, price: price });
   });
 
-  console.log("menu in DeatailMenuOfAllFood: ", menu);
+  console.log("menu in DetailMenuOfAllFood: ", menu);
   function showFood(foodName, price) {
     return (
       <Button
