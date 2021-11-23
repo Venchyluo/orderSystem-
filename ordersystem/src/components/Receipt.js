@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Row, Table, Space, Button, List, Divider } from "antd";
+import { Row, Table, Space, Button, List, Divider, InputNumber } from "antd";
 import ReactToPrint from "react-to-print";
 // import "../order.css";
+import DeliveryOrder from "./DeliveryOrder";
 
 export const Receipt = React.forwardRef((props, ref) => {
   const [dataSource, setDataSource] = useState("");
@@ -87,12 +88,25 @@ export const Receipt = React.forwardRef((props, ref) => {
   */
 
   // This is for phoner number and address
-  const customerData = [props.phoneNumber, props.address];
-
+  const customerData = props.addressShow
+    ? [props.phoneNumber, props.address]
+    : [props.phoneNumber];
+  console.log("receipt props: ", props);
   // get total price before tax and after tax
-  const priceAfterTax = totalPrice * 1.12;
+  const priceAfterTax =
+    totalPrice * 1.12 + (props.addressShow ? Number(props.deliveryCharge) : 0);
+  // const updateDeliveryCharge = (event) => {
+  //   setDeliveryCharge(event.target.value);
+  // };
+  // const logValue = () => {
+  //   console.log(deliveryCharge);
+  // };
+
   const footerContent = () => (
     <div>
+      {props.addressShow ? (
+        <Row justify="end">Delivery: $ {props.deliveryCharge} </Row>
+      ) : null}
       <Row justify="end">Price Before Tax: $ {totalPrice}</Row>
       <Row justify="end">Tax(12%): $ {(totalPrice * 0.12).toFixed(3)}</Row>
       <Row justify="end">

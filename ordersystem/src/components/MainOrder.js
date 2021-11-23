@@ -19,7 +19,7 @@ import DetailMenuOfAllFood from "./DetailMenuOfAllFood";
 import Receipt from "./Receipt";
 import MainOrderOfFood from "./MainOrderOfFood";
 import { useReactToPrint } from "react-to-print";
-import TestForPrint from "../TestForPrint";
+import { isParenthesizedExpression } from "@babel/types";
 
 export default function MainOrder() {
   const [currentPage, setCurrentPage] = React.useState("MainOrder");
@@ -32,6 +32,8 @@ export default function MainOrder() {
   });
   const [phoneNumber, setPhoneNumber] = React.useState("");
   const [address, setAddress] = React.useState("");
+  const [addressShow, setAddressShow] = React.useState(false);
+  const [deliveryCharge, setDeliveryCharge] = React.useState(0);
 
   // console.log("menu in MainOrder : ", menu);
   // operation: 1 for adding, -1 for deleting
@@ -84,9 +86,18 @@ export default function MainOrder() {
     console.log(values);
     if (values.phoneNumber) {
       setPhoneNumber(values.phoneNumber);
+    } else {
+      setPhoneNumber("");
     }
     if (values.address) {
       setAddress(values.address);
+    } else {
+      setAddress("");
+    }
+    if (values.deliveryCharge) {
+      setDeliveryCharge(values.deliveryCharge);
+    } else {
+      setDeliveryCharge(0);
     }
   };
 
@@ -94,16 +105,33 @@ export default function MainOrder() {
     form.resetFields();
   };
 
+  const isPhoneOrder = () => {
+    setAddressShow(!addressShow);
+  };
+
   return (
     <Row>
       <Col span={8}>
         <Form form={form} name="control-hooks" onFinish={onSubmit}>
+          <Form.Item>
+            <Button htmlType="button" onClick={isPhoneOrder}>
+              Phone / Delivery
+            </Button>
+          </Form.Item>
           <Form.Item name="phoneNumber" label="phoneNumber">
             <Input />
           </Form.Item>
-          <Form.Item name="address" label="address">
-            <Input />
-          </Form.Item>
+          {addressShow ? (
+            <Form.Item name="address" label="address">
+              <Input />
+            </Form.Item>
+          ) : null}
+          {addressShow ? (
+            <Form.Item name="deliveryCharge" label="deliveryCharge">
+              <Input />
+            </Form.Item>
+          ) : null}
+
           <Form.Item>
             <Button type="primary" htmlType="submit">
               Submit
@@ -120,6 +148,9 @@ export default function MainOrder() {
           ref={componentRef}
           phoneNumber={phoneNumber}
           address={address}
+          deliveryCharge={deliveryCharge}
+          addressShow={addressShow}
+          // delivertCharge={delivertCharge}
         ></Receipt>
         {/* show price after tax */}
         <Button onClick={handlePrint}>Print this out!</Button>
